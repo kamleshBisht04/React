@@ -66,7 +66,7 @@ const data = [
     publicationDate: "1965-01-01",
     author: "Frank Herbert",
     genres: ["science fiction", "novel", "adventure"],
-    hasMovieAdaptation: true,
+    hasMovieAdaptation: false,
     pages: 658,
     translations: {
       spanish: "",
@@ -142,3 +142,245 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+// start distructuring
+const book = getBook(4);
+book;
+
+const {
+  title,
+  publicationDate,
+  author,
+  genres,
+  hasMovieAdaptation,
+  pages,
+  translations,
+  reviews,
+} = book;
+
+console.log(
+  title,
+  publicationDate,
+  author,
+  genres,
+  hasMovieAdaptation,
+  pages,
+  translations,
+  reviews
+);
+
+console.log(title, author, publicationDate);
+
+console.log(genres);
+
+//  for array distruing
+// Rest operator
+
+const [primaryGenres, secondaryGeneres, ...otherGeneres] = genres;
+console.log(primaryGenres, secondaryGeneres, otherGeneres);
+
+//  sperad operator...
+const newGenres = ["epic fantacy", ...genres];
+console.log(newGenres);
+
+const updatedBook = {
+  ...book,
+  // Adding a new propety
+  moviePublicationDate: "2001-12-19",
+  // Overwriting an existing property...
+  pages: 1210,
+};
+updatedBook;
+
+//  Arrow Function
+
+// normal function change to arrow function
+
+// function getYear(str){
+//   return str.split("-").at(0)
+// }
+
+// console.log(getYear(publicationDate));
+
+const getYear = (str) => str.split("-").at(0);
+
+console.log(getYear(publicationDate));
+
+//  Template literals
+const summary = `${title},a ${pages}-page long book, was written by ${author} and published in ${getYear(
+  publicationDate
+)} The book has ${hasMovieAdaptation ? "" : "not "}been adopted as a movie .`;
+summary;
+
+// Ternaries insted of if and else statements
+
+const pagesRange = pages > 1000 ? "over a thoushand" : " less than 1000";
+pagesRange;
+console.log(`The book has ${pagesRange} pages`);
+
+// short circuiting and logically operator  && || ??
+
+//  Falsy value  // 6 values
+//  null,undefine,"",false,0,NaN
+
+// If the first operand evaluates to a falsy value: The && operator immediately returns that falsy value and does not evaluate the second operand.
+
+// If the first operand evaluates to a truthy value: The && operator proceeds to evaluate the second operand and returns the value of the second operand.
+
+console.log(true && "some string");
+console.log("kamlesh" && "some string");
+console.log(true && "");
+console.log(false && null);
+console.log(undefined && "some string");
+
+console.log(hasMovieAdaptation && "This book has a movie .");
+
+// short circuting with || operator
+// This is the "short-circuit" part. If the left-hand operand is "falsy" (evaluates to false), then the right-hand operand is evaluated and its value is returned.
+
+console.log(true || "some string");
+console.log("kamlesh" || "some string");
+console.log(true || "");
+console.log(false || null);
+console.log(undefined || "some string");
+
+console.log(hasMovieAdaptation || "This book has a movie .");
+
+console.log(book.translations.spanish);
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+
+spanishTranslation;
+
+console.log(book.reviews.librarything?.reviewsCount || 0);
+const countWrong = book.reviews?.librarything?.reviewsCount || "no data";
+countWrong;
+
+// solve problem of correct data showing in book no 2
+// Nullish coalescing operator
+// JavaScript provides a concise way to handle cases where a variable might be null or undefined.
+//  It returns the right-hand side operand if the left-hand side is null or undefined; otherwise, it returns the left-hand side value.
+
+const countreview = book.reviews?.librarything?.reviewsCount ?? 0;
+countreview;
+
+//  OPTIONAL CHAINING ?. and ?? to set the default data ....
+
+function getToTotalReviewCount(book) {
+  const goodreadsReview = reviews?.goodreads?.reviewsCount;
+  const librarythingReview = reviews?.librarything?.reviewsCount ?? 0;
+  return goodreadsReview + librarythingReview;
+}
+console.log(getToTotalReviewCount(book));
+
+// Array map method
+
+const books = getBooks();
+books;
+
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+//  returning the array of objects using () bracket
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getToTotalReviewCount(book),
+}));
+
+console.log(essentialData);
+
+// Filter method fileter out in a given condition
+
+const longBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+console.log(longBooksWithMovie);
+
+const adventureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+
+console.log(adventureBooks);
+
+//  Array Reduced method..
+
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+
+pagesAllBooks;
+
+// The array sort method ......
+
+const y = [3, 7, 1, 9, 6, 8, 2];
+
+const sorted = y.sort((a, b) => a - b);
+console.log(sorted);
+// muted the orignal array ...
+console.log(y);
+
+const decSort = y.sort((a, b) => b - a);
+console.log(decSort);
+console.log(y);
+
+//  to sorted and slice method is used to sort
+
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
+console.log(sortedByPages);
+
+//  working with immutable arrays
+
+// 1 .add book object to array
+
+const newBook = {
+  id: 6,
+  title: "Harray Potter and the chember of Secrets",
+  author: "J.K.Rowling",
+};
+
+const booksAfterAdd = [...books, newBook];
+console.log(booksAfterAdd);
+
+// 2. Delete books object  from array
+
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+console.log(booksAfterDelete);
+
+// 3. update book object in the array turnary operator
+
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1
+    ? { id: 1, title: "India", author: "pandit jawhar lal nehru" }
+    : book
+);
+
+console.log(booksAfterUpdate);
+
+const update2 = booksAfterUpdate.map((book) =>
+  book.id === 2 ? { ...book, pages: 1210 } : book
+);
+
+console.log(update2);
+
+// Asynchronous Java Script: Promises
+
+const res = fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+console.log(res);
+
+// // Asynchronous Java Script: Async/Await
+
+async function getTodo() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+
+  return data;
+}
+const todos = getTodo();
+console.log(todos);
+todos.then((data) => console.log(data));
+
+console.log("kamlesh");
