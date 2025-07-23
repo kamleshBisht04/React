@@ -14,12 +14,13 @@ function Counter() {
   const [step, setStep] = useState(1);
 
   const date = new Date();
+
   date.setDate(date.getDate() + count);
   return (
     <>
       <h1>Step counter</h1>
       <div className="section">
-        <button onClick={() => setStep((s) => s - 1)}>➖</button>
+        <button onClick={() => setStep((c) => c - 1)}>➖</button>
         <span>Step : {step}</span>
         <button onClick={() => setStep((c) => c + 1)}>➕</button>
       </div>
