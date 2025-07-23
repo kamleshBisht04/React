@@ -26,11 +26,19 @@ export default function App() {
     if (step > 1) setStep(step - 1);
   }
 
+  function handleStep(num) {
+    setStep(num);
+  }
+
   return (
     <div className="steps">
       <div className="numbers">
         {stepArray.map((num) => (
-          <div key={num} className={step === num ? "active" : ""}>
+          <div
+            key={num}
+            className={step === num ? "active" : ""}
+            onClick={() => handleStep(num)}
+          >
             {num}
           </div>
         ))}
