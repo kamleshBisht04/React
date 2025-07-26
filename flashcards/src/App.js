@@ -43,7 +43,6 @@ const questions = [
   },
 ];
 
-
 function FlashCards() {
   const [selectedId, setSelectedId] = useState(null);
 
