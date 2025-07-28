@@ -56,12 +56,17 @@ function Counter() {
         <span>{date.toDateString()}</span>
       </p>
 
-      <button className="btn" onClick={handleReset}>
-        Reset
-      </button>
+      {count !== 0 || step !== 1 ? (
+        <button className="btn" onClick={handleReset}>
+          Reset
+        </button>
+      ) : null}
     </>
   );
 }
+
+// ************************************************
+// ************************************************
 
 // function Counter() {
 //   const [count, setCount] = useState(0);
