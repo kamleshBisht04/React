@@ -49,6 +49,7 @@ function FlashCards() {
   function handleClick(id) {
     setSelectedId(id !== selectedId ? id : null);
   }
+  
   return (
     <div className="flashcards">
       {questions.map((question) => (
