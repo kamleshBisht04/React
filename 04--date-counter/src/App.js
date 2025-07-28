@@ -40,7 +40,7 @@ function Counter() {
         <input
           type="text"
           value={count}
-          onChange={(e) => setCount(Number(Number(e.target.value)))}
+          onChange={(e) => setCount(Number(e.target.value))}
         />
         <button onClick={(c) => setCount((c) => c + step)}>➕</button>
       </div>
