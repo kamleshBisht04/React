@@ -16,6 +16,11 @@ function Counter() {
   const date = new Date();
   date.setDate(date.getDate() + count);
 
+  function handleReset() {
+    setCount(0);
+    setStep(1);
+  }
+
   return (
     <>
       <div>
@@ -50,6 +55,10 @@ function Counter() {
         </span>
         <span>{date.toDateString()}</span>
       </p>
+
+      <button className="btn" onClick={handleReset}>
+        Reset
+      </button>
     </>
   );
 }
