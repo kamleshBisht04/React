@@ -139,27 +139,6 @@ function PackingList({ items, onDeleteItem, onToggle, onClearList }) {
         </select>
         <button onClick={onClearList}>CLEAR LIST</button>
       </div>
-
-      {/* <div className="sort-options">
-        <div
-          className={sortBy === "input" ? "selected" : ""}
-          onClick={() => setSortBy("input")}
-        >
-          {sortBy === "input" && "✔️ "}Sort by input
-        </div>
-        <div
-          className={sortBy === "description" ? "selected" : ""}
-          onClick={() => setSortBy("description")}
-        >
-          {sortBy === "description" && "✔️ "}Sort by description
-        </div>
-        <div
-          className={sortBy === "packed" ? "selected" : ""}
-          onClick={() => setSortBy("packed")}
-        >
-          {sortBy === "packed" && "✔️ "}Sort by packed
-        </div>
-      </div> */}
     </div>
   );
 }
