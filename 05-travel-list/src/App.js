@@ -27,6 +27,11 @@ export default function App() {
     );
   }
 
+  function handleClearList() {
+    const confirmed = window.confirm("Are Your sure clear the list ?");
+    if (confirmed) setItems([]);
+  }
+
   return (
     <div className="app">
       <Logo />
@@ -35,6 +40,7 @@ export default function App() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggle={handleToggleItem}
+        onClearList={handleClearList}
       />
       <Stats items={items} />
     </div>
@@ -94,27 +100,66 @@ function Form({ onAddItem }) {
   );
 }
 
-function PackingList({ items, onDeleteItem, onToggle }) {
+function PackingList({ items, onDeleteItem, onToggle, onClearList }) {
+  const [sortBy, setSortBy] = useState("input");
+
+  let sortedItems;
+
+  if (sortBy === "input") sortedItems = items;
+
+  if (sortBy === "description")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+
+  if (sortBy === "packed")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
     <div className="list">
       <ul>
-        {items.map((items) => (
+        {sortedItems.map((items) => (
           <Items
             items={items}
             key={items.id}
             onDeleteItem={onDeleteItem}
             onToggle={onToggle}
+            onClearList={onClearList}
           />
         ))}
       </ul>
 
       <div className="actions">
-        <select>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input">Sort By input order</option>
           <option value="description">Sort By description</option>
           <option value="packed">Sort By packed status</option>
         </select>
+        <button onClick={onClearList}>CLEAR LIST</button>
       </div>
+
+      {/* <div className="sort-options">
+        <div
+          className={sortBy === "input" ? "selected" : ""}
+          onClick={() => setSortBy("input")}
+        >
+          {sortBy === "input" && "✔️ "}Sort by input
+        </div>
+        <div
+          className={sortBy === "description" ? "selected" : ""}
+          onClick={() => setSortBy("description")}
+        >
+          {sortBy === "description" && "✔️ "}Sort by description
+        </div>
+        <div
+          className={sortBy === "packed" ? "selected" : ""}
+          onClick={() => setSortBy("packed")}
+        >
+          {sortBy === "packed" && "✔️ "}Sort by packed
+        </div>
+      </div> */}
     </div>
   );
 }
