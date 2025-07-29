@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./index.css";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Adhar-card", quantity: 1, packed: false },
-  { id: 4, description: "Bag", quantity: 1, packed: false },
-];
+// const initialItems = [
+//   { id: 1, description: "Passports", quantity: 2, packed: false },
+//   { id: 2, description: "Socks", quantity: 12, packed: false },
+//   { id: 3, description: "Adhar-card", quantity: 1, packed: false },
+//   { id: 4, description: "Bag", quantity: 1, packed: false },
+// ];
 
 export default function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([]);
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
@@ -140,12 +140,13 @@ function Items({ items, onDeleteItem, onToggle }) {
 }
 
 function Stats({ items }) {
-  if (items.length)
+  if (!items.length)
     return (
       <p className="stats">
-        <em> 🔷 Start adding some items to your packing list.✈️ </em>
+        <em>Start adding some items to your packing list 🚀</em>
       </p>
     );
+
   const numItems = items.length;
   const numPacked = items.filter((item) => item.packed).length;
   const percentage = Math.round((numPacked / numItems) * 100);
