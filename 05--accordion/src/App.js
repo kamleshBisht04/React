@@ -25,10 +25,10 @@ export default function App() {
 }
 
 function Accordion({ faqs }) {
-  const [indexOpen, setIndexOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  function handleToggle(index) {
-    setIndexOpen((previousIndex) => (previousIndex === index ? null : index));
+  function handleClick(index) {
+    setIsOpen((previousIndex) => (previousIndex === index ? null : index));
   }
 
   return (
@@ -38,8 +38,8 @@ function Accordion({ faqs }) {
           num={i}
           title={el.title}
           text={el.text}
-          isOpen={indexOpen=== i}
-          onToggle={()=>handleToggle(i)}
+          isOpen={isOpen === i}
+          onToggle={() => handleClick(i)}
         />
       ))}
     </div>
