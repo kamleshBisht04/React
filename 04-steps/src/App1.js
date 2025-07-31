@@ -16,15 +16,7 @@ export default function App() {
   return (
     <div>
       <Steps />
-      <StepMessage step={2}>
-        <p>Passing the prop</p>
-        <p>😍🔷</p>
-      </StepMessage>
-
-      <StepMessage step={3}>
-        <p>stepMessage is using the children prop</p>
-        <p>🔷🎉</p>
-      </StepMessage>
+      {/* <Steps /> */}
     </div>
   );
 }
@@ -66,42 +58,29 @@ function Steps() {
                   {num}
                 </div>
               ))}
-            </div>
-            {/* children prop passing the steps */}
-            <StepMessage step={step}>
-              {messages[step - 1]}
-              <div className="buttons">
-                <Button
-                  bgColor="#e7e7e7"
-                  textColor="#333"
-                  onClick={() => alert(`Learn how to ${messages[step - 1]}`)}
-                >
-                  Learn how
-                </Button>
-              </div>
-            </StepMessage>
 
+              {/* <div className={`${step >= 1 ? "active" : ""}`}>1</div>
+        <div className={`${step >= 2 ? "active" : ""}`}>2</div>
+        <div className={`${step >= 3 ? "active" : ""}`}>3</div>
+        <div className={`${step >= 4 ? "active" : ""}`}>4</div> */}
+            </div>
+
+            <p className="message">
+              Step {step} : {messages[step - 1]}
+            </p>
             <div className="buttons">
-              <Button
-                bgColor="#7950f2"
-                textColor="#fff"
+              <button
+                style={{ backgroundColor: "#7950f2", color: "#fff" }}
                 onClick={handlePevious}
               >
-                <span>👈</span>
                 Previous
-              </Button>
-
-              <Button bgColor="#7950f2" textColor="#fff" onClick={handleNext}>
+              </button>
+              <button
+                style={{ backgroundColor: "#7950f2", color: "#fff" }}
+                onClick={handleNext}
+              >
                 Next
-                <span>👉</span>
-                <span>😍</span>
-              </Button>
-
-              {/* <Button bgColor="#7950f2" textColor="#fff" onClick={handleNext}>
-                <span>🎉</span>
-                Party
-                <span>🎉</span>
-              </Button> */}
+              </button>
             </div>
           </div>
         )}
@@ -110,28 +89,7 @@ function Steps() {
   );
 }
 
-function Button({ bgColor, textColor, onClick, children }) {
-  return (
-    <button
-      style={{ backgroundColor: bgColor, color: textColor }}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-}
-
-function StepMessage({ step, children }) {
-  return (
-    <div className="message">
-      <h3>Step {step} :</h3>
-      {children}
-    </div>
-  );
-}
-
-//========================================================
-//========================================================
+//  2 version
 
 // import { useState } from "react";
 
@@ -150,6 +108,7 @@ function StepMessage({ step, children }) {
 // export default function App() {
 //   return (
 //     <div>
+//       <Steps />
 //       <Steps />
 //     </div>
 //   );
@@ -175,7 +134,7 @@ function StepMessage({ step, children }) {
 //   }
 
 //   return (
-//     <>
+//     <div>
 //       <button className="close" onClick={() => setIsOpen(!isOpen)}>
 //         &times;
 //       </button>
@@ -192,42 +151,33 @@ function StepMessage({ step, children }) {
 //                   {num}
 //                 </div>
 //               ))}
+
+//               {/* <div className={`${step >= 1 ? "active" : ""}`}>1</div>
+//         <div className={`${step >= 2 ? "active" : ""}`}>2</div>
+//         <div className={`${step >= 3 ? "active" : ""}`}>3</div>
+//         <div className={`${step >= 4 ? "active" : ""}`}>4</div> */}
 //             </div>
 
 //             <p className="message">
 //               Step {step} : {messages[step - 1]}
 //             </p>
 //             <div className="buttons">
-//               <Button
-//                 bgColor="#7950f2"
-//                 textColor="#fff"
+//               <button
+//                 style={{ backgroundColor: "#7950f2", color: "#fff" }}
 //                 onClick={handlePevious}
-//                 text={"Previous"}
-//                 emoji={"👈"}
-//               />
-
-//               <Button
-//                 bgColor="#7950f2"
-//                 textColor="#fff"
+//               >
+//                 Previous
+//               </button>
+//               <button
+//                 style={{ backgroundColor: "#7950f2", color: "#fff" }}
 //                 onClick={handleNext}
-//                 text={"Next"}
-//                 emoji={"👉"}
-//               />
+//               >
+//                 Next
+//               </button>
 //             </div>
 //           </div>
 //         )}
 //       </div>
-//     </>
-//   );
-// }
-
-// function Button({ bgColor, textColor, onClick, text, emoji }) {
-//   return (
-//     <button
-//       style={{ backgroundColor: bgColor, color: textColor }}
-//       onClick={onClick}
-//     >
-//       <span>{emoji}</span> {text}
-//     </button>
+//     </div>
 //   );
 // }
