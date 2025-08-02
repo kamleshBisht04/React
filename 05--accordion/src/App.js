@@ -61,7 +61,7 @@ function Accordion({ faqs }) {
 function AccordionItem({ num, title, children, isCurOpen, setIsCurOpen }) {
   const isOpen = isCurOpen === num;
   function handleClick() {
-    setIsCurOpen(num);
+    setIsCurOpen(isOpen ? null : num);
   }
 
   return (
@@ -75,6 +75,7 @@ function AccordionItem({ num, title, children, isCurOpen, setIsCurOpen }) {
 }
 
 //====================================================
+// +++++++++++++++++++++++++++++++++++++++++++++++++++
 //====================================================
 
 // import { useState } from "react";
@@ -131,6 +132,7 @@ function AccordionItem({ num, title, children, isCurOpen, setIsCurOpen }) {
 // }
 
 //=====================================================
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++
 //=====================================================
 
 // import { useState } from "react";
