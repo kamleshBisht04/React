@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialFriends = [
   {
     id: 118836,
@@ -19,15 +21,42 @@ const initialFriends = [
   },
 ];
 
-export default function App() {
+function Button({ children, onClick }) {
   return (
-    <div className="app">
-      <div className="sidebar">
-        <FriendList />
-        <FormAddFriend />
-        <Button>Add New Friend</Button>
+    <button className="button" onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+export default function App() {
+  const [showAddFriend, setShowAddFriend] = useState(false);
+
+  function handleNewFriend() {
+    setShowAddFriend((show) => !show);
+  }
+  return (
+    <>
+      <Header />
+      <div className="app">
+        <div className="sidebar">
+          <FriendList />
+          {showAddFriend && <FormAddFriend />}
+          <Button onClick={handleNewFriend}>{`${
+            showAddFriend ? "Close" : "Add Friend"
+          }`}</Button>
+        </div>
+        <FormSplitBill />
       </div>
-    </div>
+    </>
+  );
+}
+
+function Header() {
+  return (
+    <header className="header">
+      <h1>EAT-N-SPLIT BILL</h1>
+    </header>
   );
 }
 
@@ -68,10 +97,6 @@ function Friend({ friend }) {
   );
 }
 
-function Button({ children }) {
-  return <button className="button">{children}</button>;
-}
-
 function FormAddFriend() {
   return (
     <form className="form-add-friend">
@@ -82,6 +107,30 @@ function FormAddFriend() {
       <input type="text" placeholder="Enter profile URL" />
 
       <Button>Add</Button>
+    </form>
+  );
+}
+
+function FormSplitBill() {
+  return (
+    <form className="form-split-bill">
+      <h2>Split a bill with X</h2>
+
+      <label>💰Bill value</label>
+      <input type="text" />
+
+      <label>🧍Your expense</label>
+      <input type="text" />
+
+      <label>🫂X's expense</label>
+      <input type="text" disabled />
+
+      <label>🙋‍♂️Who is paying the bill ?</label>
+      <select>
+        <option value="user">You</option>
+        <option value="friend">X</option>
+      </select>
+      <Button>Split Bill</Button>
     </form>
   );
 }

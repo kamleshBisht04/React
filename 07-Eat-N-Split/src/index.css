@@ -26,10 +26,10 @@ body {
 }
 
 .app {
-  min-height: 66vh;
+  min-height: 85vh;
   display: grid;
   grid-template-columns: 35rem 45rem;
-  column-gap: 4rem;
+  column-gap: 6rem;
   align-items: start;
 }
 
@@ -168,4 +168,27 @@ form h2 {
   text-transform: uppercase;
   letter-spacing: -0.5px;
   margin-bottom: 1.6rem;
+}
+
+/* *************** */
+
+.header {
+  align-self: stretch;
+}
+
+.header h1 {
+  /* Non-accessible color */
+  color: #edc84b;
+  /* color: #af8602; */
+
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  position: relative;
+  width: 100%;
+  display: block;
+  font-family: sans-serif;
+  margin-bottom: 3rem;
 }
