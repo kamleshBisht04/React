@@ -139,6 +139,10 @@ label::first-letter {
   font-size: 1.8rem;
 }
 
+h3::first-letter {
+  text-transform: uppercase;
+}
+
 input,
 select {
   font-family: inherit;
