@@ -129,6 +129,10 @@ form {
   padding: 3.2rem 4rem;
 }
 
+.form-split-bill input,select{
+  font-weight: 500;
+}
+
 label {
   font-weight: 500;
 }
