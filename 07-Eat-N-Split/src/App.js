@@ -127,13 +127,13 @@ function Friend({ friend, onSelection, selectedFriend }) {
 
       {friend.balance < 0 && (
         <p className="red">
-          You own {friend.name} {Math.abs(friend.balance)} ₹
+          You own {friend.name} ₹ {Math.abs(friend.balance)}
         </p>
       )}
 
       {friend.balance > 0 && (
         <p className="green">
-          {friend.name} owns you {Math.abs(friend.balance)} ₹
+          {friend.name} owns you ₹ {Math.abs(friend.balance)} 
         </p>
       )}
 
