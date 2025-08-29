@@ -164,7 +164,7 @@ select {
 .sidebar {
   display: grid;
 }
-.sidebar > button  {
+.sidebar > button {
   justify-self: end;
 }
 
@@ -185,4 +185,9 @@ input:focus,
 select:focus {
   outline: none;
   border: 1px solid var(--color-dark);
+}
+
+.selected,
+.sidebar li:hover {
+  background-color: var(--color-lightest);
 }
