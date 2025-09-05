@@ -14,7 +14,7 @@ const tempMovieData = [
       "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
   },
   {
-    imdbID: "tt675166",
+    imdbID: "tt6751668",
     Title: "Parasite",
     Year: "2019",
     Poster:
@@ -26,7 +26,7 @@ const tempWatchedData = [
   {
     imdbID: "tt1375666",
     Title: "Inception",
-    Year: "2011",
+    Year: "2010",
     Poster:
       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
     runtime: 148,
@@ -44,3 +44,5 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
+
+
