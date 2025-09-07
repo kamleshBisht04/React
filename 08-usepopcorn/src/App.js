@@ -2,7 +2,7 @@ const tempMovieData = [
   {
     imdbID: "tt1375666",
     Title: "Inception",
-    Year: "2010",
+    Year: "201 0",
     Poster:
       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
   },
@@ -46,14 +46,18 @@ const tempWatchedData = [
 ];
 
 export default function App() {
-  return <Navbar />;
+  return (
+    <>
+      <NavBar />
+    </>
+  );
 }
 
-function Navbar() {
+function NavBar() {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search />
+      <SearchBar />
       <NumResult />
     </nav>
   );
@@ -68,16 +72,16 @@ function Logo() {
   );
 }
 
-function Search() {
+function SearchBar() {
   return (
-    <input className="search" type="text" placeholder="Search Movies..." />
+    <input className="search" type="text" placeholder="Search movies..." />
   );
 }
 
 function NumResult() {
   return (
     <p className="num-results">
-      Found<strong>X</strong> results
+      Found <strong>X</strong> results
     </p>
   );
 }
