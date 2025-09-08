@@ -41,22 +41,8 @@ body {
   border-radius: 0.9rem;
 }
 
-.main {
-  margin-top: 2.4rem;
-  height: calc(100vh - 7.2rem - 3 * 2.4rem);
-  display: flex;
-  gap: 2.4rem;
-  justify-content: center;
-}
 
-.box {
-  width: 42rem;
-  max-width: 42rem;
-  background-color: var(--color-background-500);
-  border-radius: 0.9rem;
-  /* overflow: scroll; */
-  position: relative;
-}
+
 
 .loader {
   text-align: center;
@@ -103,7 +89,7 @@ body {
   /* background-color: var(--color-background-900); */
   background-color: var(--color-primary-light);
 }
-
+      
 .search::placeholder {
   color: var(--color-text-dark);
 }

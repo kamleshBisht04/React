@@ -1,8 +1,10 @@
+import { useState } from "react";
+
 const tempMovieData = [
   {
     imdbID: "tt1375666",
     Title: "Inception",
-    Year: "201 0",
+    Year: "2010",
     Poster:
       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
   },
@@ -49,6 +51,7 @@ export default function App() {
   return (
     <>
       <NavBar />
+      <Main />
     </>
   );
 }
@@ -81,5 +84,69 @@ function NumResult() {
     <p className="num-results">
       Found <strong>X</strong> results
     </p>
+  );
+}
+
+function Main() {
+  return (
+    <main className="main">
+      <ListBox />
+      <WatchedBox />
+    </main>
+  );
+}
+
+function ListBox() {
+  const [isOpen1, setIsOpen1] = useState(true);
+  return (
+    <div className="box">
+      <button
+        className="btn-toggle"
+        onClick={() => setIsOpen1((open) => !open)}
+      >
+        {isOpen1 ? "-" : "+"}
+      </button>
+      {isOpen1 && <MovieList />}
+    </div>
+  );
+}
+
+function MovieList() {
+  const [movies, setMovies] = useState(tempMovieData);
+  return (
+    <ul className="list">
+      {movies?.map((movie) => (
+        <Movie movie={movie} key={movie.imdbID} />
+      ))}
+    </ul>
+  );
+}
+
+function Movie({ movie }) {
+  return (
+    <li>
+      <img src={movie.Poster} alt={`${movie.Title} poster`} />
+      <h3>{movie.Title}</h3>
+      <div>
+        <p>
+          <span>🗓️</span>
+          <span>{movie.Year}</span>
+        </p>
+      </div>
+    </li>
+  );
+}
+
+function WatchedBox() {
+  const [isOpen2, setIsOpen2] = useState(true);
+  return (
+    <div className="box">
+      <button
+        className="btn-toggle"
+        onClick={() => setIsOpen2((open) => !open)}
+      >
+        {isOpen2 ? "-" : "+"}
+      </button>
+    </div>
   );
 }
