@@ -139,6 +139,7 @@ function Movie({ movie }) {
 
 function WatchedBox() {
   const [isOpen2, setIsOpen2] = useState(true);
+  const [watched, setWatched] = useState(tempMovieData);
   return (
     <div className="box">
       <button
@@ -147,6 +148,33 @@ function WatchedBox() {
       >
         {isOpen2 ? "-" : "+"}
       </button>
+      {isOpen2 && <WatchedSummary />}
+    </div>
+  );
+}
+
+function WatchedSummary() {
+  return (
+    <div className="summary">
+      <h2>Movies you watched</h2>
+      <div>
+        <p>
+          <span>#️⃣</span>
+          <span> 8.6 movies</span>
+        </p>
+        <p>
+          <span>⭐</span>
+          <span>6.27 </span>
+        </p>
+        <p>
+          <span>🌟</span>
+          <span>8.00 </span>
+        </p>
+        <p>
+          <span>⏳</span>
+          <span>118 min</span>
+        </p>
+      </div>
     </div>
   );
 }
