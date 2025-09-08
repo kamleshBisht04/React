@@ -66,16 +66,14 @@ function NavBar() {
 function Logo() {
   return (
     <div className="logo">
-      <span role="img">🍿</span>
+      <span>🍿</span>
       <h1>usePopcorn</h1>
     </div>
   );
 }
 
 function SearchBar() {
-  return (
-    <input className="search" type="text" placeholder="Search movies..." />
-  );
+  return <input className="search" placeholder="Search Movies ..." />;
 }
 
 function NumResult() {
