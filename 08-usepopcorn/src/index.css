@@ -119,6 +119,7 @@ body {
 
 .box::-webkit-scrollbar-track {
   background: #f1f1f1;
+  background: #2b3035;
   border-radius: 10px;
 }
 
@@ -133,14 +134,14 @@ body {
 
 /* Up button */
 ::-webkit-scrollbar-button:single-button:vertical:decrement {
-  background: #3b6fbd
+  background: #888
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><polygon points='4,0 8,6 0,6' fill='white'/></svg>")
     no-repeat center;
 }
 
 /* Down button */
 ::-webkit-scrollbar-button:single-button:vertical:increment {
-  background: #3b6fbd
+  background: #888
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><polygon points='0,2 8,2 4,8' fill='white'/></svg>")
     no-repeat center;
 }
