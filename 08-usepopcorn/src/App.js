@@ -54,15 +54,18 @@ const KEY = "ebc5a797";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const query = "interstellar";
 
   useEffect(function () {
+    setIsLoading(true);
     async function fetchMovies() {
       const res = await fetch(
         `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
       );
       const data = await res.json();
       setMovies(data.Search);
+      setIsLoading(false);
     }
     fetchMovies();
   }, []);
@@ -76,15 +79,22 @@ export default function App() {
       </NavBar>
 
       <Main>
-        <Box>
-          <MovieList movies={movies} />
-        </Box>
+        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
 
         <Box>
           <WatchedSummary watched={watched} />
           <WatchedMoviesList watched={watched} />
         </Box>
       </Main>
+    </>
+  );
+}
+
+function Loader() {
+  return (
+    <>
+      <div className="spinner"></div>
+      <p className="loader">Loading...</p>
     </>
   );
 }
@@ -255,16 +265,13 @@ function WatchedMovie({ movie }) {
   );
 }
 
-
 //====================================================================
 // 1 .. useEffect function via fetch then methods ...
 
-  // useEffect(function () {
-  //   fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
-  //     .then((res) => res.json())
-  //     .then((data) => setMovies(data.Search));
-  // },[]);
-
+// useEffect(function () {
+//   fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
+//     .then((res) => res.json())
+//     .then((data) => setMovies(data.Search));
+// },[]);
 
 //====================================================================
-
