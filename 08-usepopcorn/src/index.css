@@ -292,52 +292,39 @@ body {
 
 /*  details */
 
-.details {
-  line-height: 1.4;
-  font-size: 1.4rem;
-}
-
 .btn-back {
- position: absolute;
- top: 0.6rem;
- left: 0.6rem;
- height: 3.2rem;
- aspect-ratio: 1;
- border-radius: 50%;
- border: none;
- /* background-color: var(--color-text); */
- background-color: #fff;
- color: var(--color-background-500);
- box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
- font-family: sans-serif;
- font-size: 2.4rem;
- font-weight: bold;
- cursor: pointer;
- display: flex;
- align-items: center;
- justify-content: center;
- z-index: 999;
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  /* background-color: var(--color-text);  */
+  background-color: #fff;
+  color: var(--color-background-500);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  font-family: sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-
-
-
-/* 
+.details img {
+  width: 35%;
+}
 
 .details header {
   display: flex;
 }
 
-.details section {
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
-.details img {
-  width: 33%;
+.details {
+  line-height: 1.4;
+  font-size: 1.4rem;
 }
 
 .details-overview {
@@ -360,65 +347,21 @@ body {
   align-items: center;
   gap: 0.8rem;
 }
+/* secton for movie details */
 
-.rating {
-  background-color: var(--color-background-100);
-  border-radius: 0.9rem;
-  padding: 2rem 2.4rem;
-  margin-bottom: 0.8rem;
-  font-weight: 600;
+.details section{
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  padding: 3.2rem;
+  gap: 1.6rem;
 }
 
-.btn-add {
-  background-color: var(--color-primary);
-  color: var(--color-text);
-  border: none;
-  border-radius: 10rem;
-  font-size: 1.4rem;
-  padding: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+/* rating component  */
 
-.btn-add:hover {
-  background-color: var(--color-primary-light);
-}
 
-.seconds {
-  background-color: var(--color-background-100);
-  width: 8rem;
-  border-radius: 10rem;
-  font-weight: 600;
-  text-align: center;
-  padding: 0.4rem;
-  margin-top: 2.4rem;
-}
 
-.btn-back {
-  position: absolute;
-  top: 0.6rem;
-  left: 0.6rem;
-  height: 3.2rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: none;
-  //background-color: var(--color-text); 
-  background-color: #fff;
-  color: var(--color-background-500);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
-  font-family: sans-serif;
-  font-size: 2.4rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+
+
 
 /*
 SPACING SYSTEM (px)
