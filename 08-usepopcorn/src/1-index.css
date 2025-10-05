@@ -8,15 +8,9 @@
   --color-background-900: #212529;
   --color-red: #fa5252;
   --color-red-dark: #e03131;
-  --color-background-summary: linear-gradient(
-    to right top,
-    #051937,
-    #004d7a,
-    #008793,
-    #00bf72,
-    #a8eb12
-  );
+  --color-background-summary: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 }
+
 
 * {
   margin: 0;
@@ -75,6 +69,7 @@ body {
   color: var(--color-text);
   /* background-color: var(--color-background-900); */
   background-color: var(--color-primary-light);
+
 }
 
 .search::placeholder {
@@ -394,8 +389,6 @@ body {
   background-color: var(--color-primary-light);
 }
 
-
-
 .rated {
   background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
   padding: 0.8rem;
@@ -403,9 +396,6 @@ body {
   color: black;
 }
 
-.btn-toggle-theme {
-  display: flex;
-}
 /*
 SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128
