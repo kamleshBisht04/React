@@ -25,6 +25,10 @@ export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, w
     Genre: genre,
   } = movie;
 
+  /* eslint-disable */
+  
+  // if(imdbRating >5) [isTop,setIsTop]= useState(false);
+
   // console.log(title, year, released);
   function handleAdd() {
     const parsedRuntime = parseInt(runtime);
