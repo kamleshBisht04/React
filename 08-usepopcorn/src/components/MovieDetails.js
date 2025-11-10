@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { KEY } from "./App";
 import Loader from "./Loader";
 import StarRating from "./StarRating";
@@ -7,6 +7,17 @@ export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, w
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, SetUserRating] = useState(0);
+
+  const countRef = useRef(0);
+  // let count =0 and update and use in effect it dont rerender and persist across ..
+  // let count=0;
+  useEffect(
+    function () {
+      if (userRating) countRef.current++;
+      // if (userRating) count++;
+    },
+    [userRating]
+  );
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   // console.log(isWatched);
@@ -26,7 +37,7 @@ export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, w
   } = movie;
 
   /* eslint-disable */
-  
+
   // if(imdbRating >5) [isTop,setIsTop]= useState(false);
 
   // console.log(title, year, released);
@@ -41,6 +52,7 @@ export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, w
       // runtime: Number(runtime.split(" ").at(0)),
       runtime: isNaN(parsedRuntime) ? 0 : parsedRuntime,
       userRating,
+      countRatingDecesions: countRef.current,
     };
     onAddWatched(newWatchedMovie);
     onCloseMovie();

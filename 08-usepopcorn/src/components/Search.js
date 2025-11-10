@@ -13,7 +13,6 @@ export default function Search({ query, setQuery }) {
           setQuery("");
         }
       }
-
       document.addEventListener("keydown", callback);
       return () => document.removeEventListener("keydown", callback);
     },
