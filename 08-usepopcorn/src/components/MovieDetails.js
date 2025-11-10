@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { KEY } from "./App";
 import Loader from "./Loader";
 import StarRating from "./StarRating";
+import { useKey } from "./useKey";
 
 export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
@@ -86,23 +87,7 @@ export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, w
     };
   }, [title]);
 
-  useEffect(
-    function () {
-      function callback(e) {
-        console.log(e.code);
-        if (e.code === "Escape" || e.code === "Backspace") {
-          onCloseMovie();
-          // console.log("close");
-        }
-      }
-      document.addEventListener("keydown", callback);
-
-      return function () {
-        document.removeEventListener("keydown", callback);
-      };
-    },
-    [onCloseMovie]
-  );
+  useKey("Escape", onCloseMovie);
 
   return (
     <div className="details">
