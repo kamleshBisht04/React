@@ -24,6 +24,12 @@
   margin-bottom: 3rem;
 }
 
+.product h3 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+}
+
 .product p {
   font-size: 1.6rem;
   margin-bottom: 2rem;
