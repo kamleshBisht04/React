@@ -1,0 +1,64 @@
+{
+  "cities": [
+    {
+      "id": "1",
+      "cityName": "New Delhi",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2025-03-12T09:15:00.000Z",
+      "position": {
+        "lat": 28.6139,
+        "lng": 77.209
+      },
+      "notes": "Capital of India 🇮🇳 – rich history, government center, and cultural hub."
+    },
+    {
+      "id": "2",
+      "cityName": "Kathmandu",
+      "country": "Nepal",
+      "emoji": "🇳🇵",
+      "date": "2025-11-20T14:40:00.000Z",
+      "position": {
+        "lat": 27.7172,
+        "lng": 85.324
+      },
+      "notes": "Heart of Nepal 🇳🇵 – famous for temples, mountains, and peaceful vibes 🏔️."
+    },
+    {
+      "id": "3",
+      "cityName": "Thimphu",
+      "country": "Bhutan",
+      "emoji": "🇧🇹",
+      "date": "2025-07-05T08:10:00.000Z",
+      "position": {
+        "lat": 27.4712,
+        "lng": 89.6339
+      },
+      "notes": "Bhutan’s capital 🇧🇹 – serene, clean, and known for happiness index 😊."
+    },
+    {
+      "id": "4",
+      "cityName": "Dhaka",
+      "country": "Bangladesh",
+      "emoji": "🇧🇩",
+      "date": "2024-01-18T17:25:00.000Z",
+      "position": {
+        "lat": 23.8103,
+        "lng": 90.4125
+      },
+      "notes": "Bustling city of Bangladesh 🇧🇩 – famous for food, culture, and rivers 🌊."
+    },
+    {
+      "id": "5",
+      "cityName": "Colombo",
+      "country": "Sri Lanka",
+      "emoji": "🇱🇰",
+      "date": "2023-05-22T11:50:00.000Z",
+      "position": {
+        "lat": 6.9271,
+        "lng": 79.8612
+      },
+      "notes": "Major city in Sri Lanka 🇱🇰 – coastal beauty, markets, and beaches 🏖️."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+.cityList {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.listWrapper {
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Scrollbar width remains thin */
+.listWrapper::-webkit-scrollbar {
+  width: 6px; /* slightly wider to fit arrows */
+}
+
+/* Track remains transparent */
+.listWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb remains minimalistic */
+.listWrapper::-webkit-scrollbar-thumb {
+  background: rgba(252, 247, 234, 0.6);
+  border-radius: 4px;
+}
+
+.listWrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(252, 247, 234, 0.9);
+}
+
+/* Arrow buttons */
+.listWrapper::-webkit-scrollbar-button {
+  display: block;
+  height: 12px; /* size of arrow buttons */
+  background-color: transparent;
+}
+
+/* Top arrow */
+.listWrapper::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background: url('data:image/svg+xml;utf8,<svg fill="%23fcf7ea" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="0,6 5,1 10,6"/></svg>') no-repeat center;
+  background-size: 8px 8px;
+}
+
+/* Bottom arrow */
+.listWrapper::-webkit-scrollbar-button:single-button:vertical:increment {
+  background: url('data:image/svg+xml;utf8,<svg fill="%23fcf7ea" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="0,4 5,9 10,4"/></svg>') no-repeat center;
+  background-size: 8px 8px;
+}
+
+
