@@ -1,0 +1,193 @@
+:root {
+  --color-lightest: #fff4e6;
+  --color-light: #ffe8cc;
+  --color-medium: #ffa94d;
+  --color-dark: #ff922b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  height: 100vh;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  align-self: stretch;
+}
+
+header h1 {
+  /* Non-accessible color */
+  color: #edc84b;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  font-family: sans-serif;
+  width: 100%;
+  /* display: block; */
+  margin-bottom: 3rem;
+  /* position: relative; */
+}
+
+.app {
+  min-height: 85vh;
+  display: grid;
+  grid-template-columns: 35rem 45rem;
+  grid-gap: 6rem;
+  align-items: start;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.sidebar li {
+  display: grid;
+  grid-template-columns: 4.8rem 1fr auto;
+  align-items: center;
+  column-gap: 1.6rem;
+  padding: 1.2rem;
+  border-radius: 7px;
+  transition: all 0.5s ease;
+}
+
+.sidebar li img {
+  border-radius: 50%;
+  width: 100%;
+  grid-row: span 2;
+}
+
+.sidebar li h3 {
+  grid-row: 1;
+  grid-column: 2;
+  font-family: cursive;
+}
+
+.sidebar li p {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.green {
+  color: #66a80f;
+}
+
+.red {
+  color: #e03131;
+}
+
+.button {
+  background-color: var(--color-medium);
+  color: #343a40;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar li .button {
+  grid-row: span 2;
+  grid-column: 3;
+}
+
+.button:hover {
+  background-color: var(--color-dark);
+}
+
+form {
+  display: grid;
+  font-size: 1.6rem;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: var(--color-lightest);
+  border-radius: 7px;
+}
+.form-add-friend {
+  grid-template-columns: 1.2fr 1.5fr;
+  padding: 1.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.form-split-bill {
+  grid-template-columns: 1fr 12rem;
+  padding: 3.2rem 1.5rem;
+}
+.form-split-bill input,
+select {
+  font-weight: 500;
+}
+
+label {
+  font-weight: 500;
+}
+
+label::first-letter {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 1.8rem;
+}
+
+input,
+select {
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+  text-align: center;
+  border: 1px solid var(--color-light);
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.sidebar {
+  display: grid;
+}
+.sidebar > button {
+  justify-self: end;
+}
+
+form h2 {
+  grid-column: 1/-1;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.6rem;
+}
+
+form .button {
+  margin-top: 0.6rem;
+  grid-column: 2;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border: 1px solid var(--color-dark);
+}
+
+.selected,
+.sidebar li:hover {
+  background-color: var(--color-lightest);
+}
