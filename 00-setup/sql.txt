@@ -1,0 +1,851 @@
+CREATE DATABASE temp1;
+
+CREATE DATABASE temp2;
+
+CREATE DATABASE IF NOT EXISTS temp1;
+
+DROP DATABASE temp1;
+
+DROP DATABASE temp2;
+
+CREATE DATABASE collage;
+
+USE collage;
+
+CREATE TABLE student(
+stu_id VARCHAR(50) PRIMARY KEY,
+student_name VARCHAR(30),
+city VARCHAR(30),
+collage VARCHAR(20),
+contact VARCHAR(20) NOT NULL
+); 
+
+ALTER TABLE student
+CHANGE collage collage_name VARCHAR(30);
+
+ALTER TABLE student
+CHANGE contact contact_no INT(12) NOT NULL);
+
+SHOW COLUMNS FROM student;
+
+ALTER TABLE student 
+MODIFY contact VARCHAR(12);
+
+INSERT INTO student VALUES ("DBIT101", "KAMLESH", "DELHI","DBIT DEHRADUN",7895709188);
+
+INSERT INTO student VALUES ("DBIT102", "DEEPAK", "DELHI","DBIT DEHRADUN",9563258652);
+
+INSERT INTO student VALUES ("DBIT103", "JAYESH", "DELHI","DBIT DEHRADUN",8596856589);
+
+SELECT * FROM student;
+
+INSERT INTO student VALUES ("DBIT104", "JAYESH", "DELHI","DBIT DEHRADUN",8596856589),
+("DBIT105", "suman", "DELHI","DBIT DEHRADUN",8596856589),
+("DBIT106", "JAYA", "DELHI","DBIT DEHRADUN",8925252525);
+
+INSERT INTO student (stu_id,student_name,collage_name,contact,city) VALUES 
+("DBIT107","PRITYANKA","BFIT DEHRADUN","9536114582","DEHRADUN");
+
+INSERT INTO student (stu_id,student_name,collage_name,contact,city) VALUES 
+("DBIT108","PRITYANKA","BFIT DEHRADUN","9536114582","DEHRADUN"),
+("DBIT109","PRIYA","BFIT DEHRADUN","9536114582","DEHRADUN");
+
+SELECT * FROM student;
+
+SHOW DATABASES;
+USE collage;
+SHOW TABLES;
+
+-- example
+
+CREATE DATABASE hcl;
+
+USE hcl;
+
+CREATE TABLE employee(emp_id INT,
+emp_name VARCHAR(50) NOT NULL,
+salary FLOAT(10),
+working_hour INT,
+PRIMARY KEY (emp_id)
+);
+
+
+
+INSERT INTO employee (emp_id,emp_name,salary,working_hour) VALUES 
+(101,"ganga",25550.75,8);
+
+SELECT * FROM employee;
+
+INSERT INTO employee (emp_id,emp_name,salary,working_hour) VALUES 
+(102,"ganga",26352.75,7),
+(103,"jeeven",29365,4),
+(104,"sanjay",26000,10),
+(105,"rajnesh",35000,9),
+(106,"devender",45000,3),
+(107,"sama",29000,11);
+
+-- KEYS CONCEPTS 
+-- primary key and foregin key 
+-- constraits - primay key ,not null unique, foregin key ,default ,check table
+
+-- Create the city table
+CREATE TABLE city (
+  city_id INT PRIMARY KEY,
+  city_name VARCHAR(30)
+);
+
+-- Insert city data
+INSERT INTO city (city_id, city_name) VALUES 
+(1, 'DELHI'),
+(2, 'NOIDA'),
+(3, 'DEHRADUN'),
+(4, 'ALMORA');
+
+SELECT * FROM city;
+
+-- Create the customer table with foreign key to city
+CREATE TABLE customer (
+  cust_id INT PRIMARY KEY,
+  cust_name VARCHAR(30),
+  city_id INT,
+  FOREIGN KEY (city_id) REFERENCES city(city_id)
+);
+
+-- Insert customer data
+INSERT INTO customer VALUES
+(101, 'Himanshu', 1),
+(102, 'Hema', 1),
+(103, 'Rekha', 2),
+(104, 'Kamlesh', 2),
+(105, 'Swati', 3),
+(106, 'Shivangi', 4),
+(107, 'Himanshu', 1);
+
+SELECT * FROM city;
+SELECT * FROM customer;
+
+-- Add a new column "expenditure" in city table
+ALTER TABLE city 
+ADD expenditure INT;
+
+-- Disable SQL safe updates
+SET SQL_SAFE_UPDATES = 0;
+
+-- Update expenditure data
+UPDATE city SET expenditure = 5000 WHERE city_name = 'DELHI';
+UPDATE city SET expenditure = 2000 WHERE city_name = 'NOIDA';
+UPDATE city SET expenditure = 8000 WHERE city_id = 3;
+UPDATE city SET expenditure = 10000 WHERE city_id = 4;
+
+-- Display the final result
+SELECT * FROM city;
+select * from customer;
+
+
+ -- Join the table ..alter
+SELECT customer.cust_id,
+customer.cust_name,
+city.city_name,
+city.expenditure FROM customer JOIN city 
+WHERE customer.city_id = city.city_id;
+
+-- default and check constraints 
+
+CREATE TABLE assignment (
+  assignment_id INT PRIMARY KEY,
+  emp_id INT,
+  assign_assignment INT DEFAULT 10,
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+);
+
+SELECT * FROM assignment;
+SELECT * FROM employee;
+
+INSERT INTO assignment (assignment_id, emp_id)
+VALUES (1, 101);
+
+INSERT INTO assignment (assignment_id,emp_id) VALUES (2,102);
+
+INSERT INTO assignment (assignment_id,emp_id) VALUES 
+(3,103),
+(4,104),
+(5,105),
+(6,106);
+
+-- check constraints 
+CREATE TABLE companys_details(
+company_id VARCHAR(20) PRIMARY KEY,
+company_name VARCHAR(50) NOT NULL,
+establish_year year ,
+CONSTRAINT yearCheck CHECK 
+(establish_year >2000));
+
+INSERT INTO companys_details (company_id,company_name,establish_year) VALUES 
+("HCL101" ,"HCL",2005);
+
+INSERT INTO companys_details (company_id,company_name,establish_year) VALUES 
+("HP101" ,"HP",2007);
+
+SELECT * FROM companys_details;
+
+ -- creating school_student database
+ 
+CREATE DATABASE school;
+USE school;
+
+CREATE TABLE student_Details(
+roll_no INT PRIMARY KEY,
+student_name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(1),
+city VARCHAR(20));
+
+
+INSERT INTO student_Details (roll_no,student_name,marks,grade,city) VALUES 
+(1,"kamlesh",82,"A","Delhi"),(2,"shivangi",90,"A","Delhi"),
+(3,"swati",72,"B","Haridwar"),(4,"sanjay",60,"C","Almora"),
+(5,"suman",50,"D","Dehradun"),(6,"Jay",42,"E","Delhi"),
+(7,"samay",90,"A","Dehradun"),(8,"Ajeet",72,"B","Delhi");
+
+INSERT INTO student_Details (roll_no, student_name, marks, grade, city) VALUES
+(9, 'Ishaan', 67, 'C', 'Lucknow'),
+(10, 'Kabir', 95, 'A', 'Hyderabad'),
+(11, 'Ayaan', 82, 'A', 'Noida'),
+(12, 'Atharv', 77, 'B', 'Chandigarh'),
+(13, 'Dhruv', 64, 'C', 'Bhopal'),
+(14, 'Ritvik', 53, 'D', 'Nagpur'),
+(15, 'Kunal', 91, 'A', 'Agra'),
+(16, 'Yash', 79, 'B', 'Indore'),
+(17, 'Nirav', 62, 'C', 'Delhi'),
+(18, 'Manan', 89, 'A', 'Pune'),
+(19, 'Anaya', 73, 'B', 'Kolkata'),
+(20, 'Myra', 84, 'A', 'Mumbai'),
+(21, 'Diya', 66, 'C', 'Chennai'),
+(22, 'Sara', 55, 'D', 'Bangalore'),
+(23, 'Aadhya', 94, 'A', 'Lucknow'),
+(24, 'Ira', 78, 'B', 'Surat'),
+(25, 'Kiara', 59, 'D', 'Jaipur'),
+(26, 'Misha', 87, 'A', 'Agra'),
+(27, 'Pari', 68, 'C', 'Indore'),
+(28, 'Tara', 93, 'A', 'Noida'),
+(29, 'Anvi', 72, 'B', 'Chandigarh'),
+(30, 'Zara', 51, 'D', 'Bhopal'),
+(31, 'Aarohi', 85, 'A', 'Nagpur'),
+(32, 'Meera', 74, 'B', 'Delhi'),
+(33, 'Naira', 64, 'C', 'Mumbai'),
+(34, 'Eva', 80, 'B', 'Kolkata'),
+(35, 'Riya', 90, 'A', 'Jaipur'),
+(36, 'Priya', 56, 'D', 'Pune'),
+(37, 'Shruti', 69, 'C', 'Surat'),
+(38, 'Sneha', 97, 'A', 'Hyderabad'),
+(39, 'Kritika', 76, 'B', 'Bangalore'),
+(40, 'Anisha', 63, 'C', 'Chennai'),
+(41, 'Gaurav', 79, 'B', 'Lucknow'),
+(42, 'Harsh', 91, 'A', 'Delhi'),
+(43, 'Nikhil', 54, 'D', 'Agra'),
+(44, 'Pranav', 83, 'A', 'Indore'),
+(45, 'Rohit', 72, 'B', 'Noida'),
+(46, 'Sumit', 61, 'C', 'Bhopal'),
+(47, 'Tanish', 92, 'A', 'Chandigarh'),
+(48, 'Utkarsh', 77, 'B', 'Jaipur'),
+(49, 'Vikram', 64, 'C', 'Nagpur'),
+(50, 'Yuvraj', 85, 'A', 'Surat'),
+(51, 'Amit', 66, 'C', 'Delhi'),
+(52, 'Bhavesh', 81, 'A', 'Pune'),
+(53, 'Aarav', 88, 'A', 'Delhi'),
+(54, 'Vivaan', 76, 'B', 'Mumbai'),
+(55, 'Aditya', 92, 'A', 'Kolkata'),
+(56, 'Vihaan', 65, 'C', 'Chennai'),
+(57, 'Arjun', 54, 'D', 'Bangalore'),
+(58, 'Sai', 70, 'B', 'Pune'),
+(59, 'Reyansh', 81, 'A', 'Jaipur'),
+(60, 'Krishna', 48, 'E', 'Surat');
+
+select * from student_Details;
+
+SELECT student_name, marks FROM student_Details;
+
+SELECT city FROM student_Details;
+
+-- Distinct
+
+SELECT DISTINCT (city) FROM student_Details ; 
+
+-- where clause  defines some conditions 
+
+SELECT * FROM student_Details WHERE marks >60;
+
+SELECT * FROM student_Details WHERE city = "Delhi";
+
+SELECT * FROM student_Details WHERE marks >60 AND city ="Delhi";
+
+SELECT * FROM student_Details WHERE marks > 80 OR city != "Delhi";
+
+SELECT COUNT(*)  FROM student_Details WHERE marks BETWEEN 80 AND 90;
+
+SELECT * FROM student_Details WHERE city IN("Delhi","Almora");
+
+SELECT * FROM student_Details WHERE city NOT IN("Delhi","Almora");
+
+SELECT * FROM student_Details;
+
+-- LIMIT  AND ORDER BY ASE AND desc
+
+SELECT * FROM student_Details  LIMIT 5;
+
+SELECT * FROM student_Details ORDER BY marks DESC LIMIT 6 ;
+
+SELECT * FROM student_Details ORDER BY marks LIMIT 5;
+
+SELECT * FROM student_Details ORDER BY roll_no LIMIT 10;
+
+SELECT * FROM student_Details ORDER BY roll_no  DESC LIMIT 10;
+
+-- Aggrigrate function 
+
+SELECT * from student_details;
+
+SELECT  MAX(marks) from student_details;
+SELECT  MIN(marks) from student_details;
+SELECT  AVG(marks) from student_details;
+SELECT  SUM(marks) from student_details;
+SELECT  COUNT(*) from student_details;
+
+-- Group By clause - group rows that have same value into summary row ,used with aggirate function.
+
+SELECT * from student_details;
+
+SELECT city, Count(roll_no)  FROM student_details GROUP BY city;
+
+SELECT  city, max(marks) FROM student_details GROUP BY city;
+
+SELECT  city, max(marks) FROM student_details GROUP BY city ORDER BY city ASC LIMIT 5;
+
+SELECT city ,min(marks) FROM student_details GROUP BY city ;
+
+SELECT city , AVG(marks) FROM student_details GROUP BY city;
+
+-- avarage marks in asending order with group by clause. 
+SELECT city , AVG(marks) FROM student_details GROUP BY city ORDER BY AVG(marks);
+
+-- eXAMPLE CREATE PAYMENT TABLE USEING  CUSTOMER ID ,CUSTOMER ,MODE ,CITY
+
+CREATE TABLE payment(
+customer_id INT PRIMARY KEY,
+customer VARCHAR(50),
+mode VARCHAR(30),
+city VARCHAR(20));
+
+INSERT INTO payment (customer_id,customer,mode,city) VALUES 
+(101, 'KAMLESH', 'NETBANKING', 'DELHI'),
+(102, 'SHIVANGI', 'CREDIT CARD', 'MUMBAI'),
+(103, 'RAHUL', 'DEBIT CARD', 'PUNE'),
+(104, 'PRIYA', 'UPI', 'BANGALORE'),
+(105, 'AMAN', 'CASH', 'DELHI'),
+(106, 'NEHA', 'WALLET', 'CHENNAI'),
+(107, 'ROHAN', 'NETBANKING', 'LUCKNOW'),
+(108, 'SIMRAN', 'UPI', 'KOLKATA'),
+(109, 'VIKAS', 'CREDIT CARD', 'JAIPUR'),
+(110, 'ANJALI', 'DEBIT CARD', 'SURAT'),
+(111, 'ARJUN', 'UPI', 'DELHI'),
+(112, 'TANYA', 'WALLET', 'MUMBAI'),
+(113, 'SAHIL', 'CREDIT CARD', 'BHOPAL'),
+(114, 'RENUKA', 'NETBANKING', 'PATNA'),
+(115, 'AKASH', 'CASH', 'LUCKNOW'),
+(116, 'POOJA', 'UPI', 'NAGPUR'),
+(117, 'HARSH', 'DEBIT CARD', 'DELHI'),
+(118, 'SONIA', 'WALLET', 'AHMEDABAD'),
+(119, 'MOHIT', 'CREDIT CARD', 'KANPUR'),
+(120, 'DIVYA', 'NETBANKING', 'INDORE');
+
+SELECT * FROM payment;
+
+SELECT mode ,COUNT(customer_id) FROM payment GROUP BY mode;
+
+SELECT * FROM student_details;
+
+SELECT grade ,COUNT(*) FROM student_details GROUP BY grade;
+
+-- HAVING CLAUSE 
+--  SIMILER TO WHERE APPLIES SOME CONDITION OVER ROWS 
+-- used we can apply any condition after grouping..alter
+-- The HAVING clause in SQL is used to filter groups of rows based on a specified condition, typically involving aggregate functions
+-- select columns -> from table name-> where condition -> Group by column -> having condition -> order by column ASC LIMIT .
+
+SELECT * FROM student_details;
+
+SELECT  city,count(*) FROM student_details WHERE grade ="A" GROUP BY city;
+
+SELECT  city,count(*) FROM student_details WHERE grade ="A" GROUP BY city HAVING MAX(marks) >90;
+
+SELECT  city,count(*) FROM student_details  GROUP BY city HAVING MAX(marks) >90;
+
+-- update command to update the rows 
+
+SELECT * FROM student_details;
+
+SET SQL_SAFE_UPDATES =0;
+
+UPDATE student_details 
+SET grade ="O"
+WHERE marks >90;
+
+UPDATE student_details 
+SET grade ="A"
+WHERE marks BETWEEN 80 AND 90;
+
+UPDATE student_details 
+SET grade ="B"
+WHERE marks BETWEEN 69 AND 79;
+
+UPDATE student_details 
+SET grade ="C"
+WHERE marks BETWEEN 58 AND 68;
+
+UPDATE student_details
+SET marks = 92
+WHERE student_name = "kamlesh";
+
+UPDATE student_details
+SET marks=marks+1;
+
+SELECT * FROM student_details;
+
+UPDATE student_details
+SET marks=marks-1;
+
+SELECT * FROM student_details;
+
+-- DELETE command to delete the exiting row from table 
+
+select * from student_details;
+
+insert into student_details values (0,"vijay",90,"A","Tarikhet");
+
+DELETE FROM student_details WHERE roll_no = 0;
+
+select * from student_details;
+
+-- REVISTING THE FORIGEN KEY
+
+CREATE TABLE department(
+dept_id INT PRIMARY KEY,
+name VARCHAR(50) NOT NULL);
+
+INSERT INTO department (dept_id,name) Values 
+(101,"computer science"),(102, 'Mathematics'),
+(103, 'Physics'),
+(104, 'Chemistry'),
+(105, 'Biology');
+
+select * from department;
+
+CREATE TABLE teacher (
+teacher_id INT PRIMARY KEY,
+name VARCHAR(50),
+dept_id INT NOT NULL,
+FOREIGN KEY (dept_id) REFERENCES department (dept_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO teacher (teacher_id, name, dept_id) VALUES
+(1, 'KAMLESH', 101),
+(2, 'DEEPAK', 102),
+(3, 'JAY', 103),
+(4, 'HIMANSHU', 104),
+(5, 'HIMANI', 105),
+(6, 'SHARMA', 103),
+(7, 'UMASANKAR', 104),
+(8, 'SANJAY', 105),
+(9, 'JAYANT', 103);
+
+SELECT * FROM department;
+SELECT * FROM teacher;
+
+UPDATE department
+SET name ="Botney"
+WHERE dept_id = 105;
+
+UPDATE department
+SET dept_id =106
+WHERE dept_id = 105;
+
+select teacher.teacher_id ,teacher.name,department.name,teacher.dept_id 
+FROM teacher JOIN department 
+WHERE teacher.dept_id = department.dept_id;
+
+
+-- TABLE RELATED QUERIES alter drop modify tracate add change 
+
+CREATE DATABASE HP;
+
+USE HP;
+
+CREATE TABLE employee (
+  emp_id INT PRIMARY KEY,
+  emp_name VARCHAR(50) NOT NULL,
+  designation VARCHAR(50),
+  salary DECIMAL(10,2),
+  department VARCHAR(50),
+  city VARCHAR(50)
+);
+
+INSERT INTO employee (emp_id, emp_name, designation, salary, department, city) VALUES
+(1, 'KAMLESH', 'Software Engineer', 55000.00, 'IT', 'Delhi'),
+(2, 'DEEPAK', 'Data Analyst', 48000.00, 'Analytics', 'Mumbai'),
+(3, 'PRIYA', 'HR Manager', 60000.00, 'Human Resources', 'Bangalore'),
+(4, 'JAY', 'Project Manager', 75000.00, 'Operations', 'Pune'),
+(5, 'HIMANI', 'Web Developer', 52000.00, 'IT', 'Chennai'),
+(6, 'RAHUL', 'System Admin', 50000.00, 'IT Support', 'Kolkata'),
+(7, 'SHIVANI', 'Accountant', 45000.00, 'Finance', 'Delhi'),
+(8, 'SANJAY', 'Marketing Head', 70000.00, 'Marketing', 'Hyderabad'),
+(9, 'JAYANT', 'UI Designer', 53000.00, 'Design', 'Noida'),
+(10, 'HIMANSHU', 'Tester', 47000.00, 'Quality Assurance', 'Jaipur');
+;
+SELECT * FROM employee;
+
+-- 1 add a cloumn
+
+ALTER TABLE employee
+ADD COLUMN age INT NOT NULL DEFAULT 25;
+
+-- DROP COLUMN 
+ALTER TABLE employee
+DROP COLUMN age;
+
+-- RENAME TABLE NAME 
+ALTER TABLE employee
+RENAME TO employee_details; 
+
+ALTER TABLE employee_details
+RENAME TO employee;
+
+select * from employee;
+
+ -- change the column name
+ 
+ ALTER TABLE employee
+ CHANGE COLUMN  age employee_age INT ;
+ 
+select * from employee;
+
+-- Modify is for change the datatye and constraints 
+
+ALTER TABLE employee
+MODIFY COLUMN salary decimal(10,1);
+
+-- truncate and delete example 
+
+create table google(
+emp_id int primary key,
+name varchar (50));
+
+INSERT INTO google values (1,"kamlesh");
+
+select * from google;
+ 
+TRUNCATE TABLE google;
+
+DROP TABLE google;
+
+-- Join ,left join ,right join ,inner join
+
+create database Learn_Joins;
+use Learn_Joins;
+
+CREATE TABLE department (
+  dept_id INT PRIMARY KEY,
+  dept_name VARCHAR(50)
+);
+
+
+INSERT INTO department (dept_id, dept_name) VALUES
+(101, 'HR'),
+(102, 'IT'),
+(103, 'Finance'),
+(104, 'Admin');
+
+
+CREATE TABLE employee (
+  emp_id INT PRIMARY KEY,
+  emp_name VARCHAR(50),
+  dept_id INT
+);
+
+INSERT INTO employee (emp_id, emp_name, dept_id) VALUES
+(1, 'Kamlesh', 101),
+(2, 'Deepak', 102),
+(3, 'Jay', 105);
+
+select * from department;
+select * from employee;
+
+
+-- LEFT JOIN
+
+SELECT e.emp_id,e.emp_name,d.dept_id 
+FROM employee e
+LEFT JOIN department d
+ON d.dept_id = e.dept_id;
+
+-- RIGHT JOIN
+
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM employee e
+RIGHT JOIN department d
+ON e.dept_id = d.dept_id;
+
+-- full join
+
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM employee e
+LEFT JOIN department d
+ON e.dept_id = d.dept_id
+
+UNION
+
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM employee e
+RIGHT JOIN department d
+ON e.dept_id = d.dept_id;
+
+-- 
+select * from employee
+union
+select * from  employee;
+
+-- subqueries 
+
+use school;
+select * from student_details;
+
+
+select student_name,marks from student_details where marks > (Select avg(marks) from student_details);
+
+select roll_no ,student_name from student_details where roll_no IN (Select roll_no from Student_details Where roll_no % 2=0);
+
+select city ,max(marks) from student_details group by city having city = "Delhi";
+
+
+--  view is a virtual table based on the result set on sql statement 
+
+select * from student_details;
+
+CREATE VIEW view1 AS select roll_no ,student_name AS name ,marks from student_details;
+
+SELECT * FROM view1;
+
+--  we can create view and drop view and perform onther operation as like other table but view is virtuel table .like company example ...alter
+--    The end..............................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
